@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import * as BooksAPI from './BooksAPI'
 import BookShelves from './BookShelves'
+
 export default class BookGallery extends Component{
     state = {
         books:[]
@@ -20,12 +21,7 @@ export default class BookGallery extends Component{
                     Image:book.imageLinks.thumbnail,shelf:book.shelf}
             )) ]
         }))
-        const books = this.state.books
-        console.log('books in ',books)
-        const bo = books.filter((book)=>(
-            book.shelf === 'read'
-        ))
-        console.log('read books is ', bo)
+        
     })
     }
 
