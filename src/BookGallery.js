@@ -26,10 +26,10 @@ export default class BookGallery extends Component{
     }
 
     render() {
-        return (
-            // <h1>Hello from gallery</h1>
-            <BookShelves Books={this.state.books} updateShelf={this.updateShelf}/>
-        )
+        
+        return  this.props.search? (<h1>Hello world</h1>) :
+            (<BookShelves Books={this.state.books} updateShelf={this.updateShelf}/>)
+        
     }
 
 }
