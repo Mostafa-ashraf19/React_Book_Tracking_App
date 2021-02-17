@@ -15,7 +15,7 @@ export default class Book extends Component {
             console.log('value is ',LookupTable[e.target.value]);}
     }
     render(){
-    const {title,Authors,Image} = this.props.BookInfo  
+    const {title,Authors,Image} = this.props.BookInfo;
     return (
         <div className="book">
             <div className="book-top">
