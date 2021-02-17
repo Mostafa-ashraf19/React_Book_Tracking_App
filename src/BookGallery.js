@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 import * as BooksAPI from './BooksAPI'
-
+import BookShelves from './BookShelves'
 export default class BookGallery extends Component{
     state = {
         books:[]
+    }
+    updateShelf = (bookname,newShelfName)=>{
+        console.log('Hello from update shelf');
     }
     componentDidMount(){
         // return promise, and want to acces ourbooks 
@@ -17,12 +20,19 @@ export default class BookGallery extends Component{
                     Image:book.imageLinks.thumbnail,shelf:book.shelf}
             )) ]
         }))
-        console.log('books in state ',this.state.books)
+        const books = this.state.books
+        console.log('books in ',books)
+        const bo = books.filter((book)=>(
+            book.shelf === 'read'
+        ))
+        console.log('read books is ', bo)
     })
     }
+
     render() {
         return (
-            <h1>Hello from gallery</h1>
+            // <h1>Hello from gallery</h1>
+            <BookShelves Books={this.state.books} updateShelf={this.updateShelf}/>
         )
     }
 
