@@ -15,7 +15,7 @@ export default class Book extends Component {
             console.log('value is ',LookupTable[e.target.value]);}
     }
     render(){
-    const {title,Authors,Image} = this.props.BookInfo   
+    const {title,Authors,Image} = this.props.BookInfo  
     return (
         <div className="book">
             <div className="book-top">
@@ -31,7 +31,8 @@ export default class Book extends Component {
             </div>
             </div>
             <div className="book-title">{title}</div>
-            <div className="book-authors">{Authors.map((author)=>(<span>{author}, </span>))}</div>
+            <div className="book-authors">{Authors.map((author)=>(<span key={author}>{author}, </span>))}</div>
+       
         </div>
     );
   }
