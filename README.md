@@ -20,6 +20,15 @@ To get started developing right away:
 └── ...
 ```
 
+## Sketch for Public View
+### Main Page 
+
+  ![Main](https://github.com/Mostafa-ashraf19/React_Book_Tracking_App/blob/master/Assests/Main%20Page.png?raw=true)
+
+### Search Page 
+
+  > Soon 
+
 ## Backend Server
 Currently, I do not have a server-side, So, I'm using a Udacity server AIPs provided in the file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend, Until build flask server side:
 
