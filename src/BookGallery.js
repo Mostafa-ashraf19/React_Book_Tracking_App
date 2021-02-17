@@ -17,7 +17,7 @@ export default class BookGallery extends Component{
         BooksAPI.getAll().then((ourbooks)=>{
         this.setState((currentSate)=>({
             books: [...currentSate.books,...ourbooks.map((book)=>(
-                {title:book.title,Authors:book.authors,
+                {title:book.title,Authors:(!book.authors)?[]:book.authors,
                     Image:book.imageLinks.thumbnail,shelf:book.shelf}
             )) ]
         }))
