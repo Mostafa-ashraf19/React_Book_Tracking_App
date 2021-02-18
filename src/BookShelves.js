@@ -22,12 +22,14 @@ export default class BookShelves extends Component{
                     
                 this.shelvesNames.map(name => this._handleShelves(name))
 
-                // when use a method down, it's give me warning, WHY??
+                // when use a method down, it's give me warning, WHY?? --> 1st
+                // thanks for helping but I'm put from 27 to 31 into {} give me error!! ---> 2nd
                 // this.shelvesNames.map(shelfName => {
                 //             const books = this.filterByShelf(Object.keys(shelfName)[0])
                 //             if(books.length > 0)
                 //               return <Shelf key={Object.keys(shelfName)[0]} shelfTitle={shelfName[Object.keys(shelfName)[0]]} changeShelf={this.props.updateShelf} booksList={books} />  
-                //     })
+                //   })
+                
                 }
             </div>
         )
