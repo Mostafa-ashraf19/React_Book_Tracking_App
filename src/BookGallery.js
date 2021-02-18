@@ -7,11 +7,32 @@ import Search from './Search'
 
 export default class BookGallery extends Component{
     state = {
-        books:[]
+        books:{
+           BookList: [],
+        update:false
+    }
         // searchBooks:[]
     }
-    updateShelf = (bookname,newShelfName)=>{
-        console.log('Hello from update shelf');
+    updateShelf = async (book,newShelfName)=>{
+        
+        // console.log('Hello from update shelf');
+        // console.log('Book id from updateShelf is',book);
+        // const vals =  await BooksAPI.update(book,newShelfName)
+        await BooksAPI.update(book,newShelfName)
+        // return vals
+        // this.setState((currentState)=>{
+        //     let temp = Object.assign({},currentState.books)
+        //     temp.update = !temp.update
+        //     temp.BookList.pop()
+        //     return temp;
+        //     // update:{...currentState.books
+        //     //     ,update:!currentState.state.books.update},
+        //  })
+        // this.forceUpdate();
+        // this.setState(this.state)
+        // console.log('my state is',this.state)
+        // console.log('updated books is', vals)
+
     }
     componentDidMount(){
         // return promise, and want to acces ourbooks 
@@ -19,47 +40,40 @@ export default class BookGallery extends Component{
         note this is asynchronous method 
         */
         BooksAPI.getAll().then((ourbooks)=>{
+            // console.log('getted books is ',ourbooks)
         this.setState((currentSate)=>({
-            books: [...currentSate.books,...ourbooks.map((book)=>(
+            books: {...currentSate.books,BookList:[...currentSate.books.BookList,...ourbooks.map((book)=>(
                 {title:book.title,Authors:(!book.authors)?[]:book.authors,
-                    Image:book.imageLinks.thumbnail,shelf:book.shelf}
-            )) ]
+                    Image:book.imageLinks.thumbnail,shelf:book.shelf,id:book.id}
+            )) ]}
         }))
        
         
     })
     }
      _find = async (query) =>{
+        //  console.log('hi')
              const resolvedProm = await BooksAPI.search(query);
-            //  console.log('resolvedProm  is', resolvedProm);
+            //  console.log('resolvedProm  from _find befor edit is len is', resolvedProm.length);
              if(Array.isArray(resolvedProm)){   
-             const books = resolvedProm.map((book)=>{
-                  return    {title:'',Authors:'',
-                      Image:'',sheelf:''}
-                // if( !book .title || !book.authors || !book.imageLinks.thumbnail ){
-                //  return {title:book.title,Authors:(!book.authors)?[]:book.authors,
-                //      Image:book.imageLinks.thumbnail,sheelf:'read'}
-                //  }
-                // return  {title:'',Authors:'',
-                //     Image:'',sheelf:''}
+             const books =  resolvedProm.map((book)=>{
+                try {
+                    return {title:book.title,Authors:(!book.authors)?[]:book.authors,
+                        Image:book.imageLinks.thumbnail,id:book.id}
+                }
+                catch{
+                    return {title:'',Authors:[],
+                        Image:'',id:''}
+                }
              }
-            )
-             console.log('retuned books is', books);
+            ).filter((book)=>book.title !== '')
+            //  console.log('retuned from _find books after edit is', books);
 
             return books
         }
 
             return []
-            //  console.log('Books  is', books);
-        // async ()={ 
-        // const books = resolvedProm.then(ourbooks => {
-        //     console.log('returned our books is', ourbooks)
-        //     return ourbooks
-
-        // })
-        //  BooksAPI.search(query).then((ourbooks)=>{
-        //     console.log('returned our books is', ourbooks)
-        // })
+           
     }
     
     render() {
@@ -70,7 +84,7 @@ export default class BookGallery extends Component{
 
         ) :
             (            
-            <BookShelves Books={this.state.books} updateShelf={this.updateShelf}/>
+            <BookShelves Books={this.state.books.BookList} updateShelf={this.updateShelf}/>
             )
         
     }
