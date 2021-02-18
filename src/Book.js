@@ -13,7 +13,7 @@ export default class Book extends Component {
     //   if(LookupTable[e.target.value] !== LookupTable[this.props.BookInfo.shelf])
       if(e.target.value !== this.props.BookInfo.shelf)
           {
-              this.props.ChangeShelf(LookupTable[e.target.value]);    
+            this.props.ChangeShelf(LookupTable[e.target.value]);    
             console.log('new shelf is ',e.target.value);
             this.setState({bookShelf:e.target.value})
             console.log('current shelf is ',this.props.BookInfo.shelf);
