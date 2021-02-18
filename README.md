@@ -1,6 +1,6 @@
 # MyReads Project
 
-a bookshelf app built using React that allows you to select and categorize books you have read, are currently reading, or want to read, this app use Udacity provided API until build server-side using Flask.
+a bookshelf app built using React that allows you to select and categorize books you have read, are currently reading, or want to read. This app use Udacity provided API until build server-side using Flask.
 
 ## Getting Started
 
