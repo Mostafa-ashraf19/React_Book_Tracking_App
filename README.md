@@ -14,9 +14,10 @@ To get started developing right away:
 ├── APP  
 |   ├── BookGallery
 |   ├──   ├── BookShelves
-|   ├──   ├──   ├── Shelf
-|   ├──   ├──   ├──   ├── Book 
-|   ├── Search (not completed)
+|   ├──       ├── Shelf
+|   ├──           ├── Book 
+|   ├──   ├── Search
+|   ├──       ├── Book
 └── ...
 ```
 
