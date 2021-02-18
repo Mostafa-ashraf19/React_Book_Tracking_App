@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
 import * as BooksAPI from './BooksAPI'
 import BookShelves from './BookShelves'
+import Search from './Search'
+
 
 export default class BookGallery extends Component{
     state = {
         books:[]
+        // searchBooks:[]
     }
     updateShelf = (bookname,newShelfName)=>{
         console.log('Hello from update shelf');
@@ -21,14 +24,31 @@ export default class BookGallery extends Component{
                     Image:book.imageLinks.thumbnail,shelf:book.shelf}
             )) ]
         }))
+       
         
     })
     }
+    _find = (query) =>{
+        // const resolvedProm = BooksAPI.search(query);
+        // const books = resolvedProm.then(ourbooks => {
+        //     console.log('returned our books is', ourbooks)
+        //     return ourbooks
 
+        // })
+         BooksAPI.search(query).then((ourbooks)=>{
+            console.log('returned our books is', ourbooks)
+        })
+    }
     render() {
         
-        return  this.props.search? (<h1>Hello world</h1>) :
-            (<BookShelves Books={this.state.books} updateShelf={this.updateShelf}/>)
+        return  this.props.search? (
+            
+            <Search FindQ={this._find} updateShelf={this.updateShelf}/>     
+
+        ) :
+            (            
+            <BookShelves Books={this.state.books} updateShelf={this.updateShelf}/>
+            )
         
     }
 
