@@ -2,26 +2,24 @@ import React, {Component} from 'react'
 import './App.css'
 // each component should have a root
 
-const LookupTable = {
-    'currentlyReading':1,
-    'wantToRead':2,
-    'read':3,
-    'none':4
-};
+// const LookupTable = {
+//     'currentlyReading':1,
+//     'wantToRead':2,
+//     'read':3,
+//     'none':4
+// };
 export default class Book extends Component {
     handleSelection = (e)=>{
-    //   if(LookupTable[e.target.value] !== LookupTable[this.props.BookInfo.shelf])
       if(e.target.value !== this.props.BookInfo.shelf)
           {
-            this.props.ChangeShelf(LookupTable[e.target.value]);    
-            console.log('new shelf is ',e.target.value);
+            // console.log('book id from book comp',this.props.BookInfo.id, 'props is', this.props )
+            this.props.ChangeShelf({id:this.props.BookInfo.id},e.target.value);    
             this.setState({bookShelf:e.target.value})
-            console.log('current shelf is ',this.props.BookInfo.shelf);
-            console.log('Book title', this.props.BookInfo.title)
         }
     }
     state = {
-        bookShelf:this.props.BookInfo.shelf
+        bookShelf:this.props.BookInfo.shelf,
+        id:this.props.BookInfo.id
     }
     updateShelf = (_NShelf) => {
         this.setState({bookShelf:_NShelf})   
