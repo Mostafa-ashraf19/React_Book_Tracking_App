@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 // import BookGallery from './BookGallery'
 import {Link} from 'react-router-dom'
-import BookShelves from './BookShelves'
+import Book from './Book'
 
 export default class Search extends Component {
     state = {
@@ -25,7 +25,10 @@ export default class Search extends Component {
     //         this.updatebooks()
     //     }))
     
-    this.setState({query:e.target.value},this.updatebooks)
+    // this.setState({query:e.target.value},this.updatebooks)
+    // console.log('value is', e.target.value)
+    this.setState({query:e.target.value},()=>(this.setState({books:this.props.FindQ(this.state.query)})))
+    // this.setState(()=>({query:e.target.value,books:this.props.FindQ(this.state.query)}))
     }
     updatebooks(){
         console.log('props is', this.props)
@@ -35,6 +38,7 @@ export default class Search extends Component {
         
     }
     render() {
+        if(Array.isArray(this.state.books)){
         return(
             <div className="search-books">
             <div className="search-books-bar">
@@ -45,10 +49,21 @@ export default class Search extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                <BookShelves Books={this.state.books} updateShelf={this.props.updateShelf}/>
+                  {console.log('from search books is',this.state.books)}
+                  {
+                      
+                      Array.isArray(this.state.books)?this.state.books.map((book)=>(
+                          <li key={book.title}>
+                              {/* <Book /> */}
+                          </li>
+                      )):<li></li>
+                  }
               </ol>
             </div>
           </div>
-        )
+        )}
+        else {
+           return  <h1>Hello</h1>
+        }
     }
 }
