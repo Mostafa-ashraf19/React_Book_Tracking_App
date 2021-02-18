@@ -17,28 +17,10 @@ export default class Search extends Component {
         it's really amazing!!
         Link: https://stackoverflow.com/questions/53129899/state-not-updating-when-printing-on-same-function-where-updating-in-react-js
         */
-        
-    //     this.setState({query:e.target.value},(()=>{
-    //     // console.log('query is ',this.state.query)
-    //     // console('props is', props)
-    // //    this.setState({books:this.props.FindQ(this.state.query)}) 
-    //         this.updatebooks()
-    //     }))
-    
-    // this.setState({query:e.target.value},this.updatebooks)
-    // console.log('value is', e.target.value)
-    this.setState({query:e.target.value},()=>(this.setState({books:this.props.FindQ(this.state.query)})))
-    // this.setState(()=>({query:e.target.value,books:this.props.FindQ(this.state.query)}))
+    this.setState({query:e.target.value},async ()=>this.setState({books: await this.props.FindQ(this.state.query)}))
     }
-    updatebooks(){
-        console.log('props is', this.props)
-
-        this.setState({books:this.props.FindQ(this.state.query)}) 
-
-        
-    }
+   
     render() {
-        if(Array.isArray(this.state.books)){
         return(
             <div className="search-books">
             <div className="search-books-bar">
@@ -49,21 +31,19 @@ export default class Search extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                  {console.log('from search books is',this.state.books)}
+                  {/* {console.log('state is',this.state)} */}
                   {
                       
                       Array.isArray(this.state.books)?this.state.books.map((book)=>(
-                          <li key={book.title}>
-                              {/* <Book /> */}
+                          <li key={book.id}>
+                            <Book BookInfo={book} ChangeShelf={this.props.updateShelf}/> 
                           </li>
                       )):<li></li>
                   }
               </ol>
             </div>
           </div>
-        )}
-        else {
-           return  <h1>Hello</h1>
-        }
+        )
+    
     }
 }
