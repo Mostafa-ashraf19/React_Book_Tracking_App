@@ -29,9 +29,9 @@ class BooksApp extends React.Component {
 
         )}/>
 
-        <Route  exact path='/Search' render={()=>(
-            <BookGallery  search={true}/>
-        )}/>
+        <Route exact path='/Search'>
+          <BookGallery  search={true}/>
+        </Route>
 
 
         
