@@ -1,5 +1,4 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookGallery from './BookGallery'
 import {Route,Link} from 'react-router-dom'
@@ -22,7 +21,6 @@ class BooksApp extends React.Component {
                   </div>
                 </div>
                 <div className="open-search">
-                  {/* <button onClick={() => )}>Add a book</button> */}
                   <Link id='Search' to='/Search'>Add a book</Link>                  
                 </div>
               </div>
