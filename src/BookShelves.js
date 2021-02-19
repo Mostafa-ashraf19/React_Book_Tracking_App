@@ -29,7 +29,6 @@ export default class BookShelves extends Component{
                 //             if(books.length > 0)
                 //               return <Shelf key={Object.keys(shelfName)[0]} shelfTitle={shelfName[Object.keys(shelfName)[0]]} changeShelf={this.props.updateShelf} booksList={books} />  
                 //   })
-                
                 }
             </div>
         )
