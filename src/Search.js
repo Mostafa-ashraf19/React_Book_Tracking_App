@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import BookGallery from './BookGallery'
 import {Link} from 'react-router-dom'
 import Book from './Book'
 
@@ -31,7 +30,6 @@ export default class Search extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                  {/* {console.log('state is',this.state)} */}
                   {
                       
                       Array.isArray(this.state.books)?this.state.books.map((book)=>(
