@@ -2,17 +2,10 @@ import React, {Component} from 'react'
 import './App.css'
 // each component should have a root
 
-// const LookupTable = {
-//     'currentlyReading':1,
-//     'wantToRead':2,
-//     'read':3,
-//     'none':4
-// };
 export default class Book extends Component {
     handleSelection = (e)=>{
       if(e.target.value !== this.props.BookInfo.shelf)
           {
-            // console.log('book id from book comp',this.props.BookInfo.id, 'props is', this.props )
             this.props.ChangeShelf({id:this.props.BookInfo.id},e.target.value);    
             this.setState({bookShelf:e.target.value})
         }
